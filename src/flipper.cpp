@@ -14,12 +14,12 @@ Flipper::Joint::operator std::string() const
     return id + std::to_string(position);
 }
 
-int Flipper::update() const
+void Flipper::update()
 {
     std::string gcode = "G0";
     for(auto j : joint_)
     {
         gcode += static_cast<std::string>(" ") + static_cast<std::string>(j);
     }
-    return send_msg(gcode);
+    send_msg(gcode);
 }

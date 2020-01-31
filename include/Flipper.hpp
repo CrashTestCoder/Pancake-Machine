@@ -8,9 +8,13 @@
 
 class Flipper : public Serial_Device
 {
+public:
+    Flipper();
+    
     typedef enum { X, Y, Z, A } Joint_Name;
-    struct Joint
+    class Joint
     {
+    public:
         std::string id;
         double position;
         
@@ -21,12 +25,6 @@ class Flipper : public Serial_Device
             return position = d;
         }
     };
-    Joint joint_[] = { [X] = {"X", 0}, 
-                       [Y] = {"Y", 0},
-                       [Z] = {"Z", 0}, 
-                       [A] = {"A", 0} };
-public:
-    Flipper();
 
     /**
      * setJoint updates the setpoint for the joint, but does not transmit the change
@@ -37,7 +35,13 @@ public:
     /**
      * Transmits joint commants to flipper subsystem
      */
-    int update() const;
+    void update();
+
+private:
+    Joint joint_[4] = { [X] = {"X", 0}, 
+                        [Y] = {"Y", 0},
+                        [Z] = {"Z", 0}, 
+                        [A] = {"A", 0} };
 };
 
 #endif /* __FLIPPER_H_P_P__ */

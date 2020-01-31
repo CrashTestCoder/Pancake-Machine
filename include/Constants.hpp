@@ -6,7 +6,7 @@
 
 namespace Serial
 {
-    constexpr std::string_view dir = "/dev/ttyAMA0";
+    constexpr char const * dir = "/dev/ttyAMA0";
     constexpr uint32_t baud = 9600;
 } /* Serial */
 
