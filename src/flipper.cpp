@@ -1,22 +1,25 @@
 #include "Flipper.hpp"
 
 Flipper::Flipper():
-    I2C_Device(I2C_ADDR::flipper)
+    Serial_Device(Serial::dir, Serial::baud)
 {}
 
-int Flipper::setJoint(uint8_t joint_num, double position)
+void Flipper::setJoint(Flipper::Joint_Name joint_num, double position)
 {
-
+    joint_[joint_num] = position;
 }
 
-Flipper::msg::operator std::string() const
+Flipper::Joint::operator std::string() const
 {
-    std::string out;
-    char prefix = 'a';
-    for(auto j : joint)
+    return id + std::to_string(position);
+}
+
+int Flipper::update() const
+{
+    std::string gcode = "G0";
+    for(auto j : joint_)
     {
-        out += prefix++;
-        out += std::to_string(j);
+        gcode += static_cast<std::string>(" ") + static_cast<std::string>(j);
     }
-    return out;
+    return send_msg(gcode);
 }
