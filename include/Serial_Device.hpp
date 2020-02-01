@@ -2,10 +2,8 @@
 #define __SERIAL_DEVICE_H_P_P__
 
 #include <inttypes.h>
-#include <wiringSerial.h>
 #include <errno.h>
 #include <string_view>
-#include "Constants.hpp"
 
 class Serial_Device
 {

@@ -6,12 +6,12 @@
 #include <string>
 #include <string_view>
 
+typedef enum { X, Y, Z, A } Joint_Name;
 class Flipper : public Serial_Device
 {
 public:
     Flipper();
     
-    typedef enum { X, Y, Z, A } Joint_Name;
     class Joint
     {
     public:
@@ -32,6 +32,8 @@ public:
      */
     void setJoint(Joint_Name joint, double position);
 
+    void goToStartPosition();
+    
     /**
      * Transmits joint commants to flipper subsystem
      */

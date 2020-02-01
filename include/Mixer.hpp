@@ -6,10 +6,10 @@
 class Mixer
 {
 public:
-    // Mixer();
+    Mixer();
 
-    int mix(bool);
-    int dispence(uint8_t); // value range 0 - 100(%)
+    void mix(bool);
+    void dispence(double); // value range 0 - 1
 };
 
 #endif /* __MIXER_H_P_P__ */
