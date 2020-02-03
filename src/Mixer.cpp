@@ -3,7 +3,7 @@
 
 Mixer::Mixer()
 {
-    wiringPiSetupGpio();
+    wiringPiSetupPhys();
     
     pinMode(Mixer_Info::mix_pin, OUTPUT);
     pinMode(Mixer_Info::dispence_pin, OUTPUT);
@@ -14,7 +14,7 @@ Mixer::Mixer()
 
 void Mixer::mix(bool val)
 {
-	digitalWrite(Mixer_Info::mix_pin, val);
+    digitalWrite(Mixer_Info::mix_pin, val);
 }
 
 void Mixer::dispence(double val)

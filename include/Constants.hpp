@@ -12,7 +12,7 @@ namespace Serial
 {
     constexpr char const * dir = "/dev/ttyAMA0";
     constexpr uint32_t baud = 9600;
-    constexpr bool debug = true;
+    constexpr bool debug = false;
 } /* Serial */
 
 namespace Mixer_Info
