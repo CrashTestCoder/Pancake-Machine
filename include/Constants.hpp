@@ -3,6 +3,7 @@
 
 #include <inttypes.h>
 #include <string_view>
+#include <chrono>
 #include <cmath>
 
 constexpr double pi = acos(-1);
@@ -22,6 +23,15 @@ namespace Mixer_Info
     
     constexpr int dispence_min_val = 200;
     constexpr int dispence_max_val = 900;
+}
+
+namespace Cooking_Times
+{
+    using namespace std;
+    constexpr auto mix_time = 10s;
+    constexpr auto mix_dispence_time = 10s;
+    constexpr auto side_1_cook_time = 60s;
+    constexpr auto side_2_cook_time = 60s;
 }
 
 #endif /* __CONSTANTS_H_P_P__ */
