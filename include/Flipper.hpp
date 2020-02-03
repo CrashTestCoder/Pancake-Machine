@@ -35,7 +35,7 @@ public:
     void goToStartPosition();
     
     /**
-     * Transmits joint commants to flipper subsystem
+     * Transmits joint commands to flipper subsystem
      */
     void update();
 
