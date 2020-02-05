@@ -11,7 +11,7 @@ using namespace std;
 
 void flip()
 {
-    flipper.goToStartPosition();
+    //flipper.goToStartPosition();
 
     /**********************************/
     /**         Flip Pancake          */
@@ -27,7 +27,7 @@ void flip()
     /**********************************/
     /**  Go To Serve Start Position   */
     /**********************************/
-    flipper.setJoint(Y, 0);
+    flipper.setJoint(Y, 1);
     flipper.setJoint(Z, 200);
     flipper.update();
 }
@@ -42,7 +42,7 @@ void serve()
     flipper.setJoint(A, 2*pi);
     flipper.update();
 
-    flipper.goToStartPosition();
+    //flipper.goToStartPosition();
 }
 
 int main()
@@ -52,6 +52,7 @@ int main()
     /******************************/
     std::cout << "mixing\n";
     mixer.mix(true);
+    //while(1);
     std::this_thread::sleep_for(Cooking_Times::mix_time);
 
     /******************************/

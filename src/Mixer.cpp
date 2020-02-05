@@ -19,6 +19,6 @@ void Mixer::mix(bool val)
 
 void Mixer::dispense(double val)
 {
-    constexpr auto scaler = Mixer_Info::dispence_max_val - Mixer_Info::dispence_min_val;
-    analogWrite(Mixer_Info::dispense_pin, Mixer_Info::dispence_min_val + scaler * val);
+    constexpr auto scaler = Mixer_Info::dispense_max_val - Mixer_Info::dispense_min_val;
+    analogWrite(Mixer_Info::dispense_pin, Mixer_Info::dispense_min_val + scaler * val);
 }

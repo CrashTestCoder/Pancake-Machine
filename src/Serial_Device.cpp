@@ -19,7 +19,7 @@ void Serial_Device::send_msg_8(uint8_t data)
 uint8_t Serial_Device::read_msg_8() const
 {
     if constexpr (Serial::debug)
-        return serialGetChar(fd);
+        return serialGetchar(fd);
     else 
     {
         char c;
@@ -38,9 +38,16 @@ void Serial_Device::send_msg(std::string_view str)
 std::string Serial_Device::readLine()
 {
     int exitcode;
+    char read_val;
     std::string msg;
-    while(exitcode = serialDataAvail(fd) > 0 || msg.empty())
-        msg += serialGetChar(fd);
-    if(exitcode == '\r') return msg;
-    // else error
+    while(1)
+    {
+	if(exitcode = serialDataAvail(fd); exitcode > 0) 
+	{
+            msg += read_val = serialGetchar(fd);
+	    std::cout << read_val;
+	}
+ 	if(read_val == '\r') return msg;
+    }
+// else error
 }
