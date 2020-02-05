@@ -30,6 +30,7 @@ uint8_t Serial_Device::read_msg_8() const
 
 void Serial_Device::send_msg(std::string_view str)
 {
+    //while(1)
     for(auto c : str)
         send_msg_8(c);
 }

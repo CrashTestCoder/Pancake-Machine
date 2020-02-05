@@ -12,7 +12,7 @@ static_assert(3.14-pi < .01);
 namespace Serial
 {
     constexpr char const * dir = "/dev/ttyAMA0";
-    constexpr uint32_t baud = 9600;
+    constexpr uint32_t baud = 115200;
     constexpr bool debug = false;
 } /* Serial */
 
@@ -28,10 +28,10 @@ namespace Mixer_Info
 namespace Cooking_Times
 {
     using namespace std;
-    constexpr auto mix_time = 10s;
-    constexpr auto mix_dispence_time = 10s;
-    constexpr auto side_1_cook_time = 60s;
-    constexpr auto side_2_cook_time = 60s;
+    constexpr auto mix_time = 0s;
+    constexpr auto mix_dispence_time = 0s;
+    constexpr auto side_1_cook_time = 0s;
+    constexpr auto side_2_cook_time = 0s;
 }
 
 #endif /* __CONSTANTS_H_P_P__ */
