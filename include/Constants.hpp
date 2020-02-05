@@ -19,11 +19,11 @@ namespace Serial
 namespace Mixer_Info
 {
     constexpr uint8_t mix_pin = 1;
-    constexpr uint8_t dispence_pin = 2;
+    constexpr uint8_t dispense_pin = 2;
     
-    constexpr int dispence_min_val = 200;
-    constexpr int dispence_max_val = 900;
-}
+    constexpr int dispense_min_val = 200;
+    constexpr int dispense_max_val = 900;
+} /* Mixer_Info */
 
 namespace Cooking_Times
 {
@@ -32,6 +32,7 @@ namespace Cooking_Times
     constexpr auto mix_dispence_time = 0s;
     constexpr auto side_1_cook_time = 0s;
     constexpr auto side_2_cook_time = 0s;
-}
+} /* Cooking_Times */
+>>>>>>> origin/test-merge
 
 #endif /* __CONSTANTS_H_P_P__ */
