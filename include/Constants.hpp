@@ -18,8 +18,8 @@ namespace Serial
 
 namespace Mixer_Info
 {
-    constexpr uint8_t mix_pin = 1;
-    constexpr uint8_t dispence_pin = 2;
+    constexpr uint8_t mix_pin = 27;
+    constexpr uint8_t dispence_pin = 1;
     
     constexpr int dispence_min_val = 200;
     constexpr int dispence_max_val = 900;
