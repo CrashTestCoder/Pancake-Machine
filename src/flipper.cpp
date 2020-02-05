@@ -1,4 +1,5 @@
 #include "Flipper.hpp"
+#include <iostream>
 
 Flipper::Flipper():
     Serial_Device(Serial::dir, Serial::baud)
@@ -20,6 +21,8 @@ void Flipper::update()
     for(auto j : joint_)
         gcode += static_cast<std::string>(" ") + static_cast<std::string>(j);
     send_msg(gcode + '\n');
+    if(auto err = readLine(); err[0] !='o') 
+        std::cerr << "gcode error: " << err << '\n';
 }
 
 
