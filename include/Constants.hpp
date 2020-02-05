@@ -28,7 +28,7 @@ namespace Mixer_Info
 namespace Cooking_Times
 {
     using namespace std;
-    constexpr auto mix_time = 0s;
+    constexpr auto mix_time = 5s;
     constexpr auto mix_dispence_time = 0s;
     constexpr auto side_1_cook_time = 0s;
     constexpr auto side_2_cook_time = 0s;
