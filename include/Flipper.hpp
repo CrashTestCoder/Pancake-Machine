@@ -18,6 +18,7 @@ public:
         std::string id;
         double position;
         
+        operator double() const;
         operator std::string() const;
 
         auto operator = (Joint const&) = delete;
