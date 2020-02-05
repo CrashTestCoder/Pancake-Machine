@@ -58,8 +58,10 @@ int main()
     /**        Dispencing         */
     /******************************/
     std::cout << "dispencing\n";
+
     mixer.dispense(1);
     std::this_thread::sleep_for(Cooking_Times::mix_dispence_time);
+
     mixer.mix(false);
     mixer.dispense(0);
 
