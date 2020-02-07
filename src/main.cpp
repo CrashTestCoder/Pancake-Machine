@@ -4,6 +4,7 @@
 #include <wiringPi.h>
 #include <thread>
 #include <chrono>
+#include <wiringSerial.h>
 
 #include "global.hpp"
 
@@ -47,6 +48,12 @@ void serve()
 
 int main()
 {
+    bool running = 1;
+    /*auto serialListener = std::thread([&,running]{
+        while(running)
+            if(serialDataAvail(fd) > 0)
+                std::cout << static_cast<char>(serialGetchar(fd));
+    });*/
     /******************************/
     /**          Mixing           */
     /******************************/
@@ -81,4 +88,6 @@ int main()
     std::cout << "serve\n";
     serve();
     std::cout << "done\n";
+    running = 0;
+    //serialListener.join();
 }

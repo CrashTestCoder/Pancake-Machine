@@ -6,7 +6,7 @@
 #include <string>
 #include <string_view>
 
-typedef enum { X, Y, Z, A } Joint_Name;
+typedef enum { F, X, Y, Z, A } Joint_Name;
 class Flipper : public Serial_Device
 {
 public:
@@ -17,12 +17,14 @@ public:
     public:
         std::string id;
         double position;
+        bool updated = true;
         
         operator double() const;
         operator std::string() const;
 
         auto operator = (Joint const&) = delete;
         double operator = (double d) {
+            updated = true;
             return position = d;
         }
     };
@@ -41,10 +43,11 @@ public:
     void update();
 
 private:
-    Joint joint_[4] = { [X] = {"X", 0}, 
+    Joint joint_[5] = { [F] = {"F", 10000},
+                        [X] = {"X", 0}, 
                         [Y] = {"Y", 0},
                         [Z] = {"Z", 0}, 
-                        [A] = {"A", 0} };
+                        [A] = {"A", 0}};
 };
 
 #endif /* __FLIPPER_H_P_P__ */

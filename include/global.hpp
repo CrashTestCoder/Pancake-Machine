@@ -6,5 +6,8 @@
 
 extern Mixer mixer;
 extern Flipper flipper;
+extern int fd;
+
+extern void setFD(int);
 
 #endif /* __GLOBAL_VARIABLES__ */

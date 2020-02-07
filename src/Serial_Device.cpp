@@ -4,22 +4,26 @@
 #include <iostream>
 
 
+#include "global.hpp"
+
 Serial_Device::Serial_Device(char const * device_id, std::uint32_t baud):
     fd { serialOpen(device_id, baud) }
-{}
+{
+    setFD(fd);
+    }
 
 void Serial_Device::send_msg_8(uint8_t data)
 {
-    if constexpr (Serial::debug)
-        std::cout << data;
-    else
+    //if constexpr (Serial::debug)
+        std::cout << (char)data << std::flush;
+    //else
         serialPutchar(fd, data);
 }
 
 uint8_t Serial_Device::read_msg_8() const
 {
     if constexpr (Serial::debug)
-        return serialGetchar(fd);
+        return 0;//serialGetchar(fd);
     else 
     {
         char c;
@@ -38,16 +42,15 @@ void Serial_Device::send_msg(std::string_view str)
 std::string Serial_Device::readLine()
 {
     int exitcode;
-    char read_val;
+    char read_val = 0;
     std::string msg;
     while(1)
     {
-	if(exitcode = serialDataAvail(fd); exitcode > 0) 
-	{
+        if(exitcode = serialDataAvail(fd); exitcode > 0) 
+        {
             msg += read_val = serialGetchar(fd);
-	    std::cout << read_val;
-	}
- 	if(read_val == '\r') return msg;
+        }
+        if(read_val == '\n') return msg;
     }
 // else error
 }
