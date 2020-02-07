@@ -68,6 +68,7 @@ int main()
     std::cout << "dispencing\n";
 
     mixer.dispense(1);
+    //while(1);
     std::this_thread::sleep_for(Cooking_Times::mix_dispence_time);
 
     mixer.mix(false);

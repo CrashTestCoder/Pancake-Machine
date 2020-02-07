@@ -21,15 +21,15 @@ namespace Mixer_Info
     constexpr uint8_t mix_pin = 27;
     constexpr uint8_t dispense_pin = 1;
     
-    constexpr int dispense_min_val = 200;
-    constexpr int dispense_max_val = 900;
+    constexpr int dispense_min_val = 4000;
+    constexpr int dispense_max_val = 8000;
 } /* Mixer_Info */
 
 namespace Cooking_Times
 {
     using namespace std;
     constexpr auto mix_time = 1s;
-    constexpr auto mix_dispence_time = 0s;
+    constexpr auto mix_dispence_time = 2s;
     constexpr auto side_1_cook_time = 0s;
     constexpr auto side_2_cook_time = 0s;
 } /* Cooking_Times */
