@@ -21,7 +21,7 @@ namespace Mixer_Info
     constexpr uint8_t mix_pin = 27;
     constexpr uint8_t dispense_pin = 1;
     
-    constexpr int dispense_min_val = 4000;
+    constexpr int dispense_min_val = 5000;
     constexpr int dispense_max_val = 8000;
 } /* Mixer_Info */
 
