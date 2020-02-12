@@ -22,7 +22,7 @@ void flip()
 
     flipper.setJoint(Y,100);        // lift
     flipper.update();               // maybe can remove this
-    flipper.setJoint(A,pi);
+    //flipper.setJoint(A,pi);
     flipper.update();
 
     /**********************************/
@@ -40,7 +40,7 @@ void serve()
 
     flipper.setJoint(Y,100);        // lift
     flipper.update();               // maybe can remove this
-    flipper.setJoint(A, 2*pi);
+    //flipper.setJoint(A, 2*pi);
     flipper.update();
 
     //flipper.goToStartPosition();
