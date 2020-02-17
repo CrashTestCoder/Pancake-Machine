@@ -20,16 +20,17 @@ void flip()
     flipper.setJoint(X,200.2);      // slide under pancake
     flipper.update();
 
-    flipper.setJoint(Y,100);        // lift
+    flipper.setJoint(Z,80);        // lift
     flipper.update();               // maybe can remove this
     //flipper.setJoint(A,pi);
-    flipper.update();
+    //flipper.update();
 
     /**********************************/
     /**  Go To Serve Start Position   */
     /**********************************/
-    flipper.setJoint(Y, 1);
-    flipper.setJoint(Z, 200);
+    flipper.setJoint(Y, 0);
+    flipper.setJoint(Z, 0);
+    flipper.setJoint(X, 0);
     flipper.update();
 }
 
@@ -38,12 +39,12 @@ void serve()
     flipper.setJoint(X,200.2);      // slide under pancake
     flipper.update();
 
-    flipper.setJoint(Y,100);        // lift
-    flipper.update();               // maybe can remove this
-    //flipper.setJoint(A, 2*pi);
+    flipper.setJoint(Z,80);        // lift
+    //flipper.update();               // maybe can remove this
+    flipper.setJoint(Y, -200);
     flipper.update();
 
-    //flipper.goToStartPosition();
+    flipper.goToStartPosition();
 }
 
 int main()

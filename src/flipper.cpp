@@ -60,6 +60,6 @@ void Flipper::goToStartPosition()
     setJoint(X,0);
     setJoint(Y,0);
     setJoint(Z,0);
-    setJoint(A,0);
+    //setJoint(A,0);
     update();
 }

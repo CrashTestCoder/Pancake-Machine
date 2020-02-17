@@ -6,7 +6,7 @@
 #include <string>
 #include <string_view>
 
-typedef enum { F, X, Y, Z, A } Joint_Name;
+typedef enum { F, X, Y, Z } Joint_Name;
 class Flipper : public Serial_Device
 {
 public:
@@ -43,7 +43,7 @@ public:
     void update();
 
 private:
-    Joint joint_[5] = { [F] = {"F", 10000},
+    Joint joint_[4] = { [F] = {"F", 10000},
                         [X] = {"X", 0}, 
                         [Y] = {"Y", 0},
                         [Z] = {"Z", 0}
