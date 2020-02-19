@@ -41,6 +41,8 @@ public:
      * Transmits joint commands to flipper subsystem
      */
     void update();
+    
+    void flip(bool b);
 
 private:
     Joint joint_[4] = { [F] = {"F", 10000},

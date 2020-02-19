@@ -20,18 +20,15 @@ void flip()
     flipper.setJoint(X,200.2);      // slide under pancake
     flipper.update();
 
-    flipper.setJoint(Z,80);        // lift
+    flipper.setJoint(Z,70);        // lift
     flipper.update();               // maybe can remove this
-    //flipper.setJoint(A,pi);
-    //flipper.update();
+    
+    std::this_thread::sleep_for(Flipper_Info::flip_pickup_time);
+    flipper.flip(1);
+    std::this_thread::sleep_for(Flipper_Info::flip_time);
+    flipper.flip(0);
 
-    /**********************************/
-    /**  Go To Serve Start Position   */
-    /**********************************/
-    flipper.setJoint(Y, 0);
-    flipper.setJoint(Z, 0);
-    flipper.setJoint(X, 0);
-    flipper.update();
+    flipper.goToStartPosition();
 }
 
 void serve()
@@ -39,10 +36,15 @@ void serve()
     flipper.setJoint(X,200.2);      // slide under pancake
     flipper.update();
 
-    flipper.setJoint(Z,80);        // lift
-    //flipper.update();               // maybe can remove this
+    flipper.setJoint(Z,70);        // lift
+    flipper.update();               // maybe can remove this
     flipper.setJoint(Y, -200);
     flipper.update();
+
+    std::this_thread::sleep_for(Flipper_Info::serve_pickup_time);
+    flipper.flip(1);
+    std::this_thread::sleep_for(Flipper_Info::serve_time);
+    flipper.flip(0);
 
     flipper.goToStartPosition();
 }

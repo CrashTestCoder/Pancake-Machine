@@ -1,4 +1,6 @@
 #include "Flipper.hpp"
+#include <wiringPi.h>
+#include <softPwm.h>
 #include <iostream>
 #include <thread>
 
@@ -22,6 +24,9 @@ Flipper::Flipper():
     Serial_Device(Serial::dir, Serial::baud)
 {
     update();
+    
+
+    pinMode (Flipper_Info::flip_pin, OUTPUT);
 }
 
 void Flipper::setJoint(Joint_Name joint_num, double position)
@@ -55,11 +60,19 @@ void Flipper::update()
 }
 
 
-void Flipper::goToStartPosition()
+void Flipper::goToStartPosition() 
 {
     setJoint(X,0);
     setJoint(Y,0);
     setJoint(Z,0);
-    //setJoint(A,0);
+    //setJoint(A,0)
     update();
+    
+    flip(0);
+}
+
+
+void Flipper::flip(bool b)
+{
+    digitalWrite(Flipper_Info::flip_pin, b);
 }
