@@ -43,7 +43,7 @@ Flipper::Joint::operator std::string() const
 
 void Flipper::update()
 {
-    std::string gcode = "G0";
+    std::string gcode = "G1";
     for(auto& j : joint_)
     {
         if(j.updated) gcode += ' ';
@@ -65,6 +65,7 @@ void Flipper::goToStartPosition()
     setJoint(X,0);
     setJoint(Y,0);
     setJoint(Z,0);
+    //setJoint(F,200);
     //setJoint(A,0)
     update();
     

@@ -45,7 +45,7 @@ public:
     void flip(bool b);
 
 private:
-    Joint joint_[4] = { [F] = {"F", 10000},
+    Joint joint_[4] = { [F] = {"F", 15000},
                         [X] = {"X", 0}, 
                         [Y] = {"Y", 0},
                         [Z] = {"Z", 0}

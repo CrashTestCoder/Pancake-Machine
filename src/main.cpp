@@ -6,7 +6,11 @@
 #include <chrono>
 #include <wiringSerial.h>
 
-#include "global.hpp"
+#include "Flipper.hpp"
+#include "Mixer.hpp"
+
+Mixer mixer;
+Flipper flipper;
 
 using namespace std;
 
@@ -17,11 +21,11 @@ void flip()
     /**********************************/
     /**         Flip Pancake          */
     /**********************************/
-    flipper.setJoint(X,200.2);      // slide under pancake
+    flipper.setJoint(X,200);      // slide under pancake
     flipper.update();
 
-    flipper.setJoint(Z,70);        // lift
-    flipper.update();               // maybe can remove this
+    flipper.setJoint(Z,180);        // lift
+    flipper.update();              // maybe can remove this
     
     std::this_thread::sleep_for(Flipper_Info::flip_pickup_time);
     flipper.flip(1);
@@ -33,12 +37,12 @@ void flip()
 
 void serve()
 {
-    flipper.setJoint(X,200.2);      // slide under pancake
+    flipper.setJoint(X,200);      // slide under pancake
     flipper.update();
 
-    flipper.setJoint(Z,70);        // lift
+    flipper.setJoint(Z,180);        // lift
     flipper.update();               // maybe can remove this
-    flipper.setJoint(Y, -200);
+    flipper.setJoint(Y, 300);
     flipper.update();
 
     std::this_thread::sleep_for(Flipper_Info::serve_pickup_time);

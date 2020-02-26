@@ -3,14 +3,9 @@
 #include <wiringSerial.h>
 #include <iostream>
 
-
-#include "global.hpp"
-
 Serial_Device::Serial_Device(char const * device_id, std::uint32_t baud):
     fd { serialOpen(device_id, baud) }
-{
-    setFD(fd);
-    }
+{}
 
 void Serial_Device::send_msg_8(uint8_t data)
 {
