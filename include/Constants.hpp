@@ -31,10 +31,10 @@ namespace Flipper_Info
     
     constexpr int flip_pin = 23;
     
-    constexpr auto flip_pickup_time = 3.5s;
-    constexpr auto flip_time = 1s;
+    constexpr auto flip_pickup_time = 7s;
+    constexpr auto flip_time = 2s;
     
-    constexpr auto serve_pickup_time = 9s;
+    constexpr auto serve_pickup_time = 12s;
     constexpr auto serve_time = 2s;
 
 }
@@ -42,10 +42,10 @@ namespace Flipper_Info
 namespace Cooking_Times
 {
     using namespace std;
-    constexpr auto mix_time = 3s;  // 20s;
-    constexpr auto mix_dispence_time = 1s; // 5s;
-    constexpr auto side_1_cook_time = 5s;//2.25min;
-    constexpr auto side_2_cook_time = 10s;//2min;
+    constexpr auto mix_time = 20s;
+    constexpr auto mix_dispence_time = 5s;
+    constexpr auto side_1_cook_time = 2.25min;
+    constexpr auto side_2_cook_time = 2min;
 } /* Cooking_Times */
 
 #endif /* __CONSTANTS_H_P_P__ */
