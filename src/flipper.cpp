@@ -24,7 +24,6 @@ Flipper::Flipper():
     Serial_Device(Serial::dir, Serial::baud)
 {
     update();
-    
 
     pinMode (Flipper_Info::flip_pin, OUTPUT);
 }
@@ -75,5 +74,5 @@ void Flipper::goToStartPosition()
 
 void Flipper::flip(bool b)
 {
-    digitalWrite(Flipper_Info::flip_pin, b);
+    pwmWrite(Flipper_Info::flip_pin, b?Flipper_Info::flip_max:Flipper_Info::flip_min);
 }

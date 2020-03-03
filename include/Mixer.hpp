@@ -2,9 +2,11 @@
 #define __MIXER_H_P_P__
 
 #include "Constants.hpp"
+#include "Servo.hpp"
 
 class Mixer
 {
+    Servo dispenser { Mixer_Info::dispense_pin };
 public:
     Mixer();
 

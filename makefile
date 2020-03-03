@@ -5,8 +5,8 @@ ODIR =obj
 lDIR =lib
 SDIR =src
 LIBS =-lm
-CFLAGS = -std=c++2a -lwiringPi -I$(IDIR) -I. -pthread -lpthread
-_OBJ =  flipper.o main.o Serial_Device.o Mixer.o
+CFLAGS = -std=c++2a -lwiringPi -I$(IDIR) -I. -pthread -lpthread -L./lib -fconcepts
+_OBJ = pca9685.o Servo.o flipper.o main.o Serial_Device.o Mixer.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 _DEPS =  Serial_Device.hpp Mixer.hpp Flipper.hpp Constants.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
