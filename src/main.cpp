@@ -6,6 +6,8 @@
 #include <chrono>
 #include <wiringSerial.h>
 #include <string_view>
+#include <sstream>
+#include <iomanip>
 
 #include "Flipper.hpp"
 #include "Mixer.hpp"
@@ -15,14 +17,42 @@ Flipper flipper;
 
 using namespace std;
 
-template<typename T>
+std::string dispTime(auto time)
+{
+    auto const hours = std::chrono::duration_cast<std::chrono::hours>(time);
+    auto const minutes = std::chrono::duration_cast<std::chrono::minutes>(time -= hours);
+    auto const seconds = std::chrono::duration_cast<std::chrono::seconds>(time -= minutes);
+    
+    std::basic_string<long> const times { 
+        hours.count(),
+        minutes.count(),
+        seconds.count() 
+    };
+    
+    std::stringstream outs;
+    for(auto t : times)
+    {
+        if(t || !outs.str().empty())
+        {
+            if(!outs.str().empty())
+                outs << setw(2) << setfill('0');
+            outs << t << ':';
+        }
+    }
+    std::string out = outs.str();
+    if(!out.empty())
+        out.pop_back();
+
+    return out;
+}
+
 void countdown(auto t, std::string_view cnt = "", std::string_view postmsg = "")
 {
     std::cout << ' ';
-    for(auto time = std::chrono::duration_cast<T>(t); time > 0s; time--)
+    for(auto time = t; time > 0s; time-=1s)
     {
-        std::cout << "\r                                                                \r" << cnt << time.count() << std::flush;
-        std::this_thread::sleep_for(T { 1 });
+        std::cout << "\r                                                                \r" << cnt << dispTime(time) << std::flush;
+        std::this_thread::sleep_for(1s);
     }
     std::cout << "\r                                                                    \r" << postmsg << '\n';
 }
@@ -94,14 +124,14 @@ int main()
     /******************************/
     mixer.mix(true);
     //while(1);
-    countdown<std::chrono::seconds>(Cooking_Times::mix_time, "Mixing: ", "Mixed");
+    countdown(Cooking_Times::mix_time, "Mixing: ", "Mixed");
 
     /******************************/
     /**        Dispencing         */
     /******************************/
     mixer.dispense(1);
     //while(1);
-    countdown<std::chrono::seconds>(Cooking_Times::mix_dispence_time, "Dispencing: ", "Dispenced");
+    countdown(Cooking_Times::mix_dispence_time, "Dispencing: ", "Dispenced");
 
     mixer.mix(false);
     mixer.dispense(0);
@@ -109,10 +139,10 @@ int main()
     /******************************/
     /**          Cooking          */
     /******************************/
-    countdown<std::chrono::seconds>(Cooking_Times::side_1_cook_time, "Cooking Side 1: ", "Side 1 Cooked");
+    countdown(Cooking_Times::side_1_cook_time, "Cooking Side 1: ", "Side 1 Cooked");
 
     flip();
-    countdown<std::chrono::seconds>(Cooking_Times::side_2_cook_time, "Cooking Side 2: ", "Side 2 Cooked");
+    countdown(Cooking_Times::side_2_cook_time, "Cooking Side 2: ", "Side 2 Cooked");
 
     /******************************/
     /**          Serving          */
