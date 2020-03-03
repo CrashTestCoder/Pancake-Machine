@@ -45,7 +45,7 @@ namespace Cooking_Times
     constexpr auto mix_time = 20s;
     constexpr auto mix_dispence_time = 5s;
     constexpr auto side_1_cook_time = 2.25min;
-    constexpr auto side_2_cook_time = 2min;
+    constexpr auto side_2_cook_time = 2.0min;
 } /* Cooking_Times */
 
 #endif /* __CONSTANTS_H_P_P__ */
