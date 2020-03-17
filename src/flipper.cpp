@@ -25,7 +25,7 @@ Flipper::Flipper():
 {
     update();
 
-    pinMode (Flipper_Info::flip_pin, OUTPUT);
+    flip(0);
 }
 
 void Flipper::setJoint(Joint_Name joint_num, double position)
@@ -74,5 +74,5 @@ void Flipper::goToStartPosition()
 
 void Flipper::flip(bool b)
 {
-    pwmWrite(Flipper_Info::flip_pin, b?Flipper_Info::flip_max:Flipper_Info::flip_min);
+    flipper.set_ms(b?Flipper_Info::flip_max:Flipper_Info::flip_min);
 }

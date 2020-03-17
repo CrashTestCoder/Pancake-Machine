@@ -8,6 +8,7 @@
 #include <string_view>
 #include <sstream>
 #include <iomanip>
+#include <vector>
 
 #include "pca9685.h"
 #include "Flipper.hpp"
@@ -16,13 +17,16 @@
 class WiringPiSetupBeforeOtherStuff
 {
 public:
-    WiringPiSetupBeforeOtherStuff() { wiringPiSetup(); }
+    WiringPiSetupBeforeOtherStuff() { wiringPiSetupGpio(); }
 } _setup;
 
 int Servo::fd = pca9685Setup(Servo_Info::PIN_BASE, 0x40, Servo_Info::freq);
+int Relay::fd = serialOpen("/dev/ttyACM0", 115200);
 
-Mixer mixer;
+Mixer mixer { Mixer_Info::dispense_pin, Mixer_Info::mix_pin };
+Mixer hopper { Hopper_Info::dispenser_pin, Hopper_Info::vibrator_pin };
 Flipper flipper;
+Relay water_pump { Water_Pump_Info::pump_pin };
 
 using namespace std;
 
@@ -32,7 +36,7 @@ std::string dispTime(auto time)
     auto const minutes = std::chrono::duration_cast<std::chrono::minutes>(time -= hours);
     auto const seconds = std::chrono::duration_cast<std::chrono::seconds>(time -= minutes);
     
-    std::basic_string const times { 
+    std::vector const times { 
         hours.count(),
         minutes.count(),
         seconds.count() 
@@ -124,12 +128,24 @@ int main()
 {
     if(Servo::fd < 0)
         std::cout << Servo::fd;
-    bool running = 1;
-    /*auto serialListener = std::thread([&,running]{
-        while(running)
-            if(serialDataAvail(fd) > 0)
-                std::cout << static_cast<char>(serialGetchar(fd));
-    });*/
+    
+    auto add_water = std::thread([]{
+        water_pump.set(1);
+        std::this_thread::sleep_for(Water_Pump_Info::pump_time);
+        water_pump.set(0);
+    });
+    
+    auto add_mix = std::thread([]{
+        hopper.mix(1);
+        hopper.dispense(1);
+        std::this_thread::sleep_for(Hopper_Info::dispense_time);
+        hopper.mix(0);
+        hopper.dispense(0);
+    });
+    
+    add_water.join();
+    add_mix.join();
+    
     /******************************/
     /**          Mixing           */
     /******************************/
@@ -160,6 +176,6 @@ int main()
     /******************************/
     serve();
     std::cout << "done\n";
-    running = 0;
+    
     //serialListener.join();
 }

@@ -3,6 +3,7 @@
 
 #include "Serial_Device.hpp"
 #include "Constants.hpp"
+#include "Servo.hpp"
 #include <string>
 #include <string_view>
 
@@ -50,6 +51,7 @@ private:
                         [Y] = {"Y", 0},
                         [Z] = {"Z", 180}
                         };
+    Servo flipper { Flipper_Info::flip_pin };
 };
 
 #endif /* __FLIPPER_H_P_P__ */

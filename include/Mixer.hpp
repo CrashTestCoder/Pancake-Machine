@@ -3,15 +3,17 @@
 
 #include "Constants.hpp"
 #include "Servo.hpp"
+#include "Relay.hpp"
 
 class Mixer
 {
-    Servo dispenser { Mixer_Info::dispense_pin };
+    Servo dispenser;
+    Relay mixer { Mixer_Info::mix_pin };
 public:
-    Mixer();
+    Mixer(int disp_pin, int mix_pin);
 
     void mix(bool);
-    void dispense(double); // value range 0 - 1
+    void dispense(bool); 
 };
 
 #endif /* __MIXER_H_P_P__ */
