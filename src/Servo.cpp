@@ -18,5 +18,6 @@ constexpr int Servo::calculateTicks(double ms) const
 
 void Servo::set_ms(double ms)
 {
+	std::lock_guard { update_mutex };
 	pwmWrite(Servo_Info::PIN_BASE + adr, calculateTicks(ms));
 }

@@ -1,6 +1,5 @@
 #include "Flipper.hpp"
 #include <wiringPi.h>
-#include <softPwm.h>
 #include <iostream>
 #include <thread>
 
@@ -30,6 +29,7 @@ Flipper::Flipper():
 
 void Flipper::setJoint(Joint_Name joint_num, double position)
 {
+    std::lock_guard { update_mutex };
     joint_[joint_num] = position;
 }
 

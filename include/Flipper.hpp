@@ -6,6 +6,7 @@
 #include "Servo.hpp"
 #include <string>
 #include <string_view>
+#include <mutex>
 
 typedef enum { F, X, Y, Z } Joint_Name;
 class Flipper : public Serial_Device
@@ -51,6 +52,9 @@ private:
                         [Y] = {"Y", 0},
                         [Z] = {"Z", 180}
                         };
+
+    std::mutex update_mutex;
+    
     Servo flipper { Flipper_Info::flip_pin };
 };
 

@@ -5,9 +5,11 @@
 #include <errno.h>
 #include <string_view>
 #include <string>
+#include <mutex>
 
 class Serial_Device
 {
+    static inline std::recursive_mutex writing_mutex;
 protected:
     int const fd;
 

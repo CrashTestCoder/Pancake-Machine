@@ -19,5 +19,6 @@ void Relay::set(bool val)
 {
 	Relay_msg const msg { adr, val };
 	
+	std::lock_guard { update_mutex };
 	serialPutchar(fd, *(unsigned char*)&msg);
 }

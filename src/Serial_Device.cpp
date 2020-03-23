@@ -10,6 +10,7 @@ Serial_Device::Serial_Device(char const * device_id, std::uint32_t baud):
 
 void Serial_Device::send_msg_8(uint8_t data)
 {
+    std::lock_guard guard(writing_mutex);
     if constexpr (Serial::debug)
         std::cout << (char)data << std::flush;
     else
@@ -30,7 +31,8 @@ uint8_t Serial_Device::read_msg_8() const
 
 void Serial_Device::send_msg(std::string_view str)
 {
-    //while(1)
+    std::lock_guard { writing_mutex };
+    
     for(auto c : str)
         send_msg_8(c);
 }
